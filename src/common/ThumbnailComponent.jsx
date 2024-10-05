@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const ThumbnailComponent = ({ URL, poster }) => {
+const ThumbnailComponent = ({ URL, poster, thumbnailType }) => {
     const videoRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -33,20 +33,32 @@ const ThumbnailComponent = ({ URL, poster }) => {
         };
     }, []);
 
+    if (thumbnailType === "VIDEO") {
+        return (
+            <div>
+                <video
+                    ref={videoRef}
+                    src={isVisible ? URL : undefined} // Load video only if visible
+                    poster={poster}
+                    controls
+                    muted
+                    style={{ width: '100%', height: '300px' }} // Adjust styles as needed
+                    autoPlay
+                    loop
+                />
+            </div>
+        );
+    }
+
     return (
         <div>
-            <video
-                ref={videoRef}
-                src={isVisible ? URL : undefined} // Load video only if visible
-                poster={poster}
-                controls
-                muted
-                style={{ width: '100%', height: '300px' }} // Adjust styles as needed
-                autoPlay
-                loop
-            />
+            <img
+            src= {URL[0]}
+            style={{ width: '100%', height: '300px' }}
+            alt="Thumbnail Image" />
+        {console.log(URL[0])}
         </div>
-    );
+    )
 };
 
 export default ThumbnailComponent;
