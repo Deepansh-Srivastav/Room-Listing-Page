@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
-const VideoComponent = ({ videoSrc, poster }) => {
+const ThumbnailComponent = ({ URL, poster }) => {
     const videoRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const
-            videoElement = videoRef.current;
+        const videoElement = videoRef.current;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -38,7 +37,7 @@ const VideoComponent = ({ videoSrc, poster }) => {
         <div>
             <video
                 ref={videoRef}
-                src={isVisible ? videoSrc : undefined} // Load video only if visible
+                src={isVisible ? URL : undefined} // Load video only if visible
                 poster={poster}
                 controls
                 muted
@@ -50,4 +49,4 @@ const VideoComponent = ({ videoSrc, poster }) => {
     );
 };
 
-export default VideoComponent;
+export default ThumbnailComponent;
