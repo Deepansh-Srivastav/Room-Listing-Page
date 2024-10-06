@@ -1,19 +1,49 @@
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import VariantDropdown from "./Dropdown"
+import ThumbnailComponent from "../common/ThumbnailComponent";
+import { IoIosBed } from "react-icons/io";
+import { IoPerson } from "react-icons/io5";
+
+let thumbnailType = null
 
 function RoomCard({ room }) {
+
+    thumbnailType = (room.properties.video_url && room.properties.video_url.med ? "VIDEO" : "IMAGE")
+
     return (
-            <Card style={{ width: '18rem' }} key={room.room_type_code}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                    <Card.Title>{room.name}</Card.Title>
-                    <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-            </Card>
+        <Card style={{ width: '18rem', margin: "25px 0 30px 0" }} key={room.room_type_code}>
+            {thumbnailType === "VIDEO" ?
+                <ThumbnailComponent
+                    URL={room?.properties?.video_url?.med}
+                    poster=""
+                    thumbnailType={thumbnailType}
+                />
+                :
+                <ThumbnailComponent
+                    URL={room?.properties?.room_images[0]?.image_urls}
+                    poster=""
+                    thumbnailType={thumbnailType}
+                />}
+
+            <Card.Body>
+                <Card.Title>{room.name}</Card.Title>
+
+                <Card.Text>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ad ex repudiandae voluptate.
+                </Card.Text>
+                <Card.Text>
+                    <IoIosBed style={{margin:"0 10px 0 0"}}/>
+                    {room?.properties?.bed_type} BED
+                </Card.Text>
+
+                <Card.Text>
+                    <IoPerson style={{margin:"0 10px 0 0"}}/>
+                    {room?.properties?.room_capacity?.max_adult} Adults
+                </Card.Text>
+
+                <VariantDropdown />
+            </Card.Body>
+        </Card>
     );
 }
 export default RoomCard

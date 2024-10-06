@@ -64,9 +64,6 @@ const RoomListing = () => {
                     )
                 })
             }
-
-
-
         </Container>
     )
 }
