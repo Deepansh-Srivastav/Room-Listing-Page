@@ -51,6 +51,7 @@ const RoomListing = () => {
                                     <Card.Text>
                                     <IoPerson />
 
+
                                         {room?.properties?.room_capacity?.max_adult} Adults
                                     </Card.Text>
 
