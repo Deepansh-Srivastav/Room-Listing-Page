@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import ImageSlider from "../common/ImageSlider";
 
 const ThumbnailComponent = ({ URL, poster, thumbnailType }) => {
     const videoRef = useRef(null);
@@ -52,11 +53,7 @@ const ThumbnailComponent = ({ URL, poster, thumbnailType }) => {
 
     return (
         <div>
-            <img
-            src= {URL[0]}
-            style={{ width: '100%', height: '300px' }}
-            alt="Thumbnail Image" />
-        {console.log(URL[0])}
+            <ImageSlider URL = {URL}/>
         </div>
     )
 };

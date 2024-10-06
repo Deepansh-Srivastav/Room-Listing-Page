@@ -3,6 +3,9 @@ import { Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ThumbnailComponent from "../common/ThumbnailComponent";
+import { IoIosBed } from "react-icons/io";
+import { IoPerson } from "react-icons/io5";
+
 
 import "../styles/RoomCard.css"
 
@@ -27,20 +30,31 @@ const RoomListing = () => {
                                     <ThumbnailComponent
                                         URL={room?.properties?.video_url?.med}
                                         poster=""
-                                        thumbnailType = {thumbnailType}
+                                        thumbnailType={thumbnailType}
                                     />
                                     :
                                     <ThumbnailComponent
                                         URL={room?.properties?.room_images[0]?.image_urls}
                                         poster=""
-                                        thumbnailType = {thumbnailType}
+                                        thumbnailType={thumbnailType}
                                     />}
 
                                 <Card.Body style={{ borderTop: "1px solid black" }}>
-                                    <Card.Title>{ }</Card.Title>
+
+                                    <Card.Title>{room.name}</Card.Title>
+
                                     <Card.Text>
-                                        2 Adults
+                                        <IoIosBed />
+                                        {room?.properties?.bed_type} BED
                                     </Card.Text>
+
+                                    <Card.Text>
+                                    <IoPerson />
+
+                                        {room?.properties?.room_capacity?.max_adult} Adults
+                                    </Card.Text>
+
+
                                     <Button variant="primary">See more</Button>
                                 </Card.Body>
 
