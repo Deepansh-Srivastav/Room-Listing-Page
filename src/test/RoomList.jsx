@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import RoomCard from "./RoomCard"
 import roomData from "../sample.json"
 import { BeatLoader } from 'react-spinners';
+import { Container } from 'react-bootstrap';
+import "../styles/RoomCard.css"
 
 export default function RoomList() {
 
@@ -53,12 +55,12 @@ export default function RoomList() {
     }, [isLoading]); // Add isLoading dependency
 
     return (
-        <div className="room-list">
+        <Container className="room-list room_listing_container">
             {displayedRooms.map((room, index) => (
                 <RoomCard key={`${room.room_type_code}-${index}`} room={room} />
             ))}
 
             {isLoading && <BeatLoader />}
-        </div>
+        </Container>
     );
 }
