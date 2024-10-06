@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './common/Header';
+import RoomList from './test/RoomList';
 // import RoomListing from './pages/RoomListing';
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
     <>
       <Header />
       {/* <RoomListing /> */}
+      <RoomList/>
     </>
   )
 }
