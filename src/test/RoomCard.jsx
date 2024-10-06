@@ -1,12 +1,12 @@
 import Card from 'react-bootstrap/Card';
-import VariantDropdown from "./Dropdown"
+import VariantAccordion from "./VariantAccordion"
 import ThumbnailComponent from "../common/ThumbnailComponent";
 import { IoIosBed } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 
 let thumbnailType = null
 
-function RoomCard({ room }) {
+export default function RoomCard({ room }) {
 
     thumbnailType = (room.properties.video_url && room.properties.video_url.med ? "VIDEO" : "IMAGE")
 
@@ -41,9 +41,8 @@ function RoomCard({ room }) {
                     {room?.properties?.room_capacity?.max_adult} Adults
                 </Card.Text>
 
-                <VariantDropdown />
+                <VariantAccordion variants = {room?.variants || [] }/>
             </Card.Body>
         </Card>
     );
 }
-export default RoomCard

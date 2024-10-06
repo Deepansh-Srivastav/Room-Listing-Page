@@ -1,0 +1,10 @@
+.custom-card-header, 
+.custom-card-body {
+    background-color: transparent !important; /* Make background transparent */
+    border: none !important; /* Remove borders */
+    box-shadow: none !important; /* Remove shadow, if any */
+}
+
+.custom-card {
+    border: none !important; /* Remove card border */
+}
