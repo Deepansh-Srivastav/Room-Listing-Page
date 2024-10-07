@@ -1,8 +1,6 @@
 import Card from 'react-bootstrap/Card';
-let times = 1
 
 export default function VariantCard({name}) {
-    console.log("Now the card is created-", times);
     
     return (
         <Card className='w-100 my-3'>

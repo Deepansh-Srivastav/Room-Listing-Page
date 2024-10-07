@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import RoomCard from "./RoomCard"
 import roomData from "../sample.json"
-import { BeatLoader } from 'react-spinners';
+import { MoonLoader } from 'react-spinners';
 import { Container } from 'react-bootstrap';
 import "../styles/RoomCard.css"
 
@@ -13,8 +13,6 @@ export default function RoomList() {
     const [visibleRooms, setVisibleRooms] = useState(4); // Initial 4 rooms
     const [displayedRooms, setDisplayedRooms] = useState(rooms.slice(0, 4)); // Show 4 rooms
     const [isLoading, setIsLoading] = useState(false);
-
-    console.log("Total cards are- ", displayedRooms.length);
 
     // Function to load more rooms when user scrolls
     const loadMoreRooms = () => {
@@ -60,7 +58,7 @@ export default function RoomList() {
                 <RoomCard key={`${room.room_type_code}-${index}`} room={room} />
             ))}
 
-            {isLoading && <BeatLoader />}
+            {isLoading && <MoonLoader color='#428bca' size={50} />}
         </Container>
     );
 }

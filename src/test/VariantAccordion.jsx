@@ -1,7 +1,6 @@
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import Card from 'react-bootstrap/Card';
-import VersionCard from "../common/VariantsCard"
 import "../styles/Accordion.css"
 import { useState } from 'react';
 import VariantCard from '../common/VariantsCard';
@@ -32,9 +31,6 @@ export default function VariantAccordion({ variants }) {
     function dataLoadingHandler() {
         setIsDataLoaded(true)
     }
-
-    console.log(isDataLoaded);
-    
 
     return (
         <Accordion className='variant-accordion'>

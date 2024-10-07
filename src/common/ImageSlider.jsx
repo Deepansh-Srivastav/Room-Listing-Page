@@ -3,7 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function ImageSlider({ URL }) {
     return (
@@ -22,16 +23,14 @@ export default function ImageSlider({ URL }) {
             >
                 {URL.map(image => {
                     return (
-                        <>
-                            <SwiperSlide>
-                                <img
-                                    src={image}
-                                    style={{ width: '100%', height: '300px' }}
-                                    alt="Thumbnail Image"
-                                    loading='lazy'
-                                     />
-                            </SwiperSlide>
-                        </>
+                        <SwiperSlide key={uuidv4()}>
+                            <img
+                                src={image}
+                                style={{ width: '100%', height: '300px' }}
+                                alt="Thumbnail Image"
+                                loading='lazy'
+                            />
+                        </SwiperSlide>
                     )
                 })}
             </Swiper>

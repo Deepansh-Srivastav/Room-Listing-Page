@@ -11,7 +11,7 @@ export default function RoomCard({ room }) {
     thumbnailType = (room.properties.video_url && room.properties.video_url.med ? "VIDEO" : "IMAGE")
 
     return (
-        <Card style={{ width: '18rem', margin: "25px 0 30px 0" }} key={room.room_type_code}>
+        <Card style={{ width: '18rem', margin: "25px 0 30px 0" }}>
             {thumbnailType === "VIDEO" ?
                 <ThumbnailComponent
                     URL={room?.properties?.video_url?.med}
@@ -32,16 +32,16 @@ export default function RoomCard({ room }) {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ad ex repudiandae voluptate.
                 </Card.Text>
                 <Card.Text>
-                    <IoIosBed style={{margin:"0 10px 0 0"}}/>
+                    <IoIosBed style={{ margin: "0 10px 0 0" }} />
                     {room?.properties?.bed_type} BED
                 </Card.Text>
 
                 <Card.Text>
-                    <IoPerson style={{margin:"0 10px 0 0"}}/>
+                    <IoPerson style={{ margin: "0 10px 0 0" }} />
                     {room?.properties?.room_capacity?.max_adult} Adults
                 </Card.Text>
 
-                <VariantAccordion variants = {room?.variants || [] }/>
+                <VariantAccordion variants={room?.variants || []} />
             </Card.Body>
         </Card>
     );

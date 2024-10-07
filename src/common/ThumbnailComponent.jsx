@@ -43,7 +43,7 @@ const ThumbnailComponent = ({ URL, poster, thumbnailType }) => {
                     poster={poster}
                     controls
                     muted
-                    style={{ height: '100%',  width: '100%', }} // Adjust styles as needed
+                    style={{ height: '100%',  width: '100%', }}
                     autoPlay
                     loop
                 />
