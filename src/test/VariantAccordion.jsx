@@ -41,8 +41,8 @@ export default function VariantAccordion({ variants }) {
                 <Accordion.Collapse eventKey="0">
                     <Card.Body className="custom-card-body">
                         {isDataLoaded ? (
-                            variants.map(variant => {
-                                return <VariantCard {...variant} key={variant.variant_id} />
+                            variants.map((variant, index) => {
+                                return <VariantCard {...variant} index = {index} key={variant.variant_id} />
                             })
                         ) : null}
                     </Card.Body>

@@ -11,7 +11,7 @@ export default function RoomCard({ room }) {
     thumbnailType = (room.properties.video_url && room.properties.video_url.med ? "VIDEO" : "IMAGE")
 
     return (
-        <Card style={{ width: '18rem', margin: "25px 0 30px 0" }}>
+        <Card style={{ width: '100%', maxWidth:"24rem", margin: "25px 0 30px 0" }}>
             {thumbnailType === "VIDEO" ?
                 <ThumbnailComponent
                     URL={room?.properties?.video_url?.med}
