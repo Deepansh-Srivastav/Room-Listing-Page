@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import ImageSlider from "../common/ImageSlider";
 
 const ThumbnailComponent = ({ URL, poster, thumbnailType }) => {
+    
     const videoRef = useRef(null);
+    
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+
         const videoElement = videoRef.current;
 
         const observer = new IntersectionObserver(
@@ -20,7 +23,7 @@ const ThumbnailComponent = ({ URL, poster, thumbnailType }) => {
                     videoElement.pause();
                 }
             },
-            { threshold: 0.5 } // Adjust the threshold as needed
+            { threshold: 0.5 }
         );
 
         if (videoElement) {
@@ -39,7 +42,7 @@ const ThumbnailComponent = ({ URL, poster, thumbnailType }) => {
             <div>
                 <video
                     ref={videoRef}
-                    src={isVisible ? URL : undefined} // Load video only if visible
+                    src={isVisible ? URL : undefined} // Give SRC to video only if visible
                     poster={poster}
                     controls
                     muted

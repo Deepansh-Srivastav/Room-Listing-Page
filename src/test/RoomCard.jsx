@@ -3,16 +3,19 @@ import VariantAccordion from "./VariantAccordion"
 import ThumbnailComponent from "../common/ThumbnailComponent";
 import { IoIosBed } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
-
-let thumbnailType = null
+import { useMemo } from 'react';
 
 export default function RoomCard({ room }) {
 
-    thumbnailType = (room.properties.video_url && room.properties.video_url.med ? "VIDEO" : "IMAGE")
+    // Assigning the thumbnailTypeFlag to video or image conditionally
+    let thumbnailType = useMemo(() => {
+        return (room.properties.video_url && room.properties.video_url.med ? "VIDEO" : "IMAGE")
+    },[room])
 
-    return (
-        <Card style={{ width: '100%', maxWidth:"24rem", margin: "25px 0 30px 0" }}>
-            {thumbnailType === "VIDEO" ?
+    // returning JSX conditionally and storing it in the usememo to avoid unnecessary rerenders
+    const Thumbnail = useMemo(() => {
+        return (
+            thumbnailType === "VIDEO" ?
                 <ThumbnailComponent
                     URL={room?.properties?.video_url?.med}
                     poster=""
@@ -23,7 +26,14 @@ export default function RoomCard({ room }) {
                     URL={room?.properties?.room_images[0]?.image_urls}
                     poster=""
                     thumbnailType={thumbnailType}
-                />}
+                />
+        )
+    },[thumbnailType, room])
+
+    return (
+        <Card style={{ width: '100%', maxWidth: "24rem", margin: "25px 0 30px 0" }}>
+
+            {Thumbnail}
 
             <Card.Body>
                 <Card.Title>{room.name}</Card.Title>

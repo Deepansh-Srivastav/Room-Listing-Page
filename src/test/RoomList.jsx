@@ -4,24 +4,23 @@ import { Container } from 'react-bootstrap';
 import "../styles/RoomCard.css";
 import _ from 'lodash';
 
-const RoomCard = React.lazy(() => import('./RoomCard')); // Lazy load RoomCard
+const RoomCard = React.lazy(() => import('./RoomCard')); // Lazy load RoomCard Component 
 
 export default function RoomList({ rooms }) {
     const [visibleRooms, setVisibleRooms] = useState(4); // Initial 4 rooms
     const [displayedRooms, setDisplayedRooms] = useState(rooms.slice(0, 4)); // Show 4 rooms
     const [isLoading, setIsLoading] = useState(false);
 
-    // Function to load more rooms when user scrolls
+    // Function to load more rooms when user scrolls down the page
     const loadMoreRooms = () => {
         setVisibleRooms((prevVisibleRooms) => prevVisibleRooms + 4);
     };
 
-    // Update displayed rooms when `visibleRooms` changes
+    // Update displayed rooms when visibleRooms state changes
     useEffect(() => {
         setDisplayedRooms(rooms.slice(0, visibleRooms));
     }, [visibleRooms, rooms]);
 
-    // Throttled scroll event handler to prevent excessive calls
     const handleScroll = useCallback(
         _.throttle(() => {
             if (
@@ -38,15 +37,15 @@ export default function RoomList({ rooms }) {
                     }, 500);
                 }
             }
-        }, 200), // 200ms delay between scroll events
-        [isLoading, displayedRooms, rooms] // Dependencies to avoid stale closures
+        }, 200),
+        [isLoading, displayedRooms, rooms]
     );
 
-    // Add scroll event listener to trigger loading more rooms
+    // Added scroll event listener to trigger loading more rooms
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [handleScroll]); // Ensure the latest throttled handler is added
+    }, [handleScroll]);
 
     return (
         <Container className="room-list room_listing_container">
