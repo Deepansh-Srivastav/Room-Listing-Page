@@ -8,17 +8,22 @@ import { RoomListingPageContext } from '../store/Room_Listing_Page_Context';
 const RoomCard = React.lazy(() => import('./RoomCard')); // Lazy load RoomCard Component 
 
 export default function RoomListingPage({ rooms }) {
-    const [visibleRooms, setVisibleRooms] = useState(4); // Initial 4 rooms
-    const [displayedRooms, setDisplayedRooms] = useState(rooms.slice(0, 4)); // Show 4 rooms
-    const [isLoading, setIsLoading] = useState(false);
-    const [hasMoreRooms, setHasMoreRooms] = useState(true); // Track if more rooms are available
 
     // Function to load more rooms when user scrolls down the page
     const loadMoreRooms = () => {
         setVisibleRooms((prevVisibleRooms) => prevVisibleRooms + 4);
     };
 
-    // const {number, glovalStateValue} = useContext(RoomListingPageContext)
+    const {
+        visibleRooms,
+        setVisibleRooms,
+        displayedRooms,
+        setDisplayedRooms,
+        isLoading,
+        setIsLoading,
+        hasMoreRooms,
+        setHasMoreRooms,
+    } = useContext(RoomListingPageContext)
 
 
     // Update displayed rooms when visibleRooms state changes
