@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 
 export default function RoomCard({ room }) {
 
-    // Assigning the thumbnailTypeFlag to video or image conditionally
+    // Assigning the thumbnailTypeFlag as video or image conditionally
     let thumbnailType = useMemo(() => {
         return (room.properties.video_url && room.properties.video_url.med ? "VIDEO" : "IMAGE")
     },[room])
@@ -36,11 +36,13 @@ export default function RoomCard({ room }) {
             {Thumbnail}
 
             <Card.Body>
+
                 <Card.Title>{room.name}</Card.Title>
 
                 <Card.Text>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ad ex repudiandae voluptate.
                 </Card.Text>
+
                 <Card.Text>
                     <IoIosBed style={{ margin: "0 10px 0 0" }} />
                     {room?.properties?.bed_type} BED
@@ -52,6 +54,7 @@ export default function RoomCard({ room }) {
                 </Card.Text>
 
                 <VariantAccordion variants={room?.variants || []} />
+                
             </Card.Body>
         </Card>
     );

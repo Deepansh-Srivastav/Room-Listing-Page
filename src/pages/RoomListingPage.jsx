@@ -10,7 +10,6 @@ const RoomCard = React.lazy(() => import('./RoomCard')); // Lazy load RoomCard C
 export default function RoomListingPage({ rooms }) {
 
     // Function to load more rooms when user scrolls down the page
-
     const {
         visibleRooms,
         displayedRooms,

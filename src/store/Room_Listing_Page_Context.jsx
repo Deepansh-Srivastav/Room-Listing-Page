@@ -14,7 +14,6 @@ export const RoomListingPageContext = createContext({
     rooms: [],
     loadMoreRooms: () => { },
     handleScroll: () => { },
-    
 })
 
 
