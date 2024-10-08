@@ -10,19 +10,15 @@ const RoomCard = React.lazy(() => import('./RoomCard')); // Lazy load RoomCard C
 export default function RoomListingPage({ rooms }) {
 
     // Function to load more rooms when user scrolls down the page
-    const loadMoreRooms = () => {
-        setVisibleRooms((prevVisibleRooms) => prevVisibleRooms + 4);
-    };
 
     const {
         visibleRooms,
-        setVisibleRooms,
         displayedRooms,
         setDisplayedRooms,
         isLoading,
-        setIsLoading,
         hasMoreRooms,
         setHasMoreRooms,
+        handleScroll
     } = useContext(RoomListingPageContext)
 
 
@@ -36,24 +32,6 @@ export default function RoomListingPage({ rooms }) {
         }
     }, [visibleRooms, rooms]);
 
-    const handleScroll = useCallback(
-        _.throttle(() => {
-            if (
-                window.innerHeight + document.documentElement.scrollTop >=
-                document.documentElement.offsetHeight - 50 &&
-                !isLoading &&
-                hasMoreRooms // Only load more if there are more rooms
-            ) {
-                setIsLoading(true);
-
-                setTimeout(() => {
-                    loadMoreRooms();
-                    setIsLoading(false);
-                }, 500);
-            }
-        }, 200),
-        [isLoading, hasMoreRooms] // Updated dependencies
-    );
 
     // Added scroll event listener to trigger loading more rooms
     useEffect(() => {
