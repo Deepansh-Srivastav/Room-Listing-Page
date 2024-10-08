@@ -3,9 +3,11 @@ import { BeatLoader, MoonLoader } from 'react-spinners';
 import { Container } from 'react-bootstrap';
 import "../styles/RoomCard.css";
 import _ from 'lodash';
+import { useContext } from 'react';
+import { RoomListingPageContext } from '../store/Room_Listing_Page_Context';
 const RoomCard = React.lazy(() => import('./RoomCard')); // Lazy load RoomCard Component 
 
-export default function RoomList({ rooms }) {
+export default function RoomListingPage({ rooms }) {
     const [visibleRooms, setVisibleRooms] = useState(4); // Initial 4 rooms
     const [displayedRooms, setDisplayedRooms] = useState(rooms.slice(0, 4)); // Show 4 rooms
     const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +17,9 @@ export default function RoomList({ rooms }) {
     const loadMoreRooms = () => {
         setVisibleRooms((prevVisibleRooms) => prevVisibleRooms + 4);
     };
+
+    // const {number, glovalStateValue} = useContext(RoomListingPageContext)
+
 
     // Update displayed rooms when visibleRooms state changes
     useEffect(() => {

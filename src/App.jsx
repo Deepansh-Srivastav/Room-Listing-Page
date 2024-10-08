@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './common/Header';
-import RoomList from './test/RoomList';
+import RoomListingPage from './pages/RoomListingPage';
 import roomData from "./data/Data.json"
 import { useState, useEffect } from 'react';
+import RoomListingPageProvider from './store/Room_Listing_Page_Context';
 
 export default function App() {
 
@@ -32,9 +33,9 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <RoomListingPageProvider>
       <Header />
-      {error ? (<h2>{errorMessage}</h2>) : <RoomList rooms={rooms} />}
-    </>
+      {error ? (<h2>{errorMessage}</h2>) : <RoomListingPage rooms={rooms} />}
+    </RoomListingPageProvider>
   )
 }
