@@ -1,4 +1,4 @@
-import React,{ useState, useEffect, useCallback, Suspense } from 'react';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { BeatLoader, MoonLoader } from 'react-spinners';
 import { Container } from 'react-bootstrap';
 import "../styles/RoomCard.css";
@@ -10,15 +10,23 @@ export default function RoomList({ rooms }) {
     const [visibleRooms, setVisibleRooms] = useState(4); // Initial 4 rooms
     const [displayedRooms, setDisplayedRooms] = useState(rooms.slice(0, 4)); // Show 4 rooms
     const [isLoading, setIsLoading] = useState(false);
+    const [hasMoreRooms, setHasMoreRooms] = useState(true); // Track if more rooms are available
 
     // Function to load more rooms when user scrolls down the page
     const loadMoreRooms = () => {
         setVisibleRooms((prevVisibleRooms) => prevVisibleRooms + 4);
     };
 
+    console.log(displayedRooms.length);
+
     // Update displayed rooms when visibleRooms state changes
     useEffect(() => {
         setDisplayedRooms(rooms.slice(0, visibleRooms));
+
+        // Check if there are more rooms to display
+        if (visibleRooms >= rooms.length) {
+            setHasMoreRooms(false); // No more rooms available
+        }
     }, [visibleRooms, rooms]);
 
     const handleScroll = useCallback(
@@ -26,19 +34,18 @@ export default function RoomList({ rooms }) {
             if (
                 window.innerHeight + document.documentElement.scrollTop >=
                 document.documentElement.offsetHeight - 50 &&
-                !isLoading
+                !isLoading &&
+                hasMoreRooms // Only load more if there are more rooms
             ) {
-                if (displayedRooms.length <= rooms.length) {
-                    setIsLoading(true);
+                setIsLoading(true);
 
-                    setTimeout(() => {
-                        loadMoreRooms();
-                        setIsLoading(false);
-                    }, 500);
-                }
+                setTimeout(() => {
+                    loadMoreRooms();
+                    setIsLoading(false);
+                }, 500);
             }
         }, 200),
-        [isLoading, displayedRooms, rooms]
+        [isLoading, hasMoreRooms] // Updated dependencies
     );
 
     // Added scroll event listener to trigger loading more rooms
@@ -55,7 +62,7 @@ export default function RoomList({ rooms }) {
                 </Suspense>
             ))}
 
-            {isLoading && <MoonLoader color='#428bca' size={50} />}
+            {isLoading && hasMoreRooms && <MoonLoader color='#428bca' size={50} />} {/* Only show loader if there are more rooms */}
         </Container>
     );
 }
