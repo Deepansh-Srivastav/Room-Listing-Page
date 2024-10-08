@@ -3,7 +3,6 @@ import { BeatLoader, MoonLoader } from 'react-spinners';
 import { Container } from 'react-bootstrap';
 import "../styles/RoomCard.css";
 import _ from 'lodash';
-
 const RoomCard = React.lazy(() => import('./RoomCard')); // Lazy load RoomCard Component 
 
 export default function RoomList({ rooms }) {
@@ -16,8 +15,6 @@ export default function RoomList({ rooms }) {
     const loadMoreRooms = () => {
         setVisibleRooms((prevVisibleRooms) => prevVisibleRooms + 4);
     };
-
-    console.log(displayedRooms.length);
 
     // Update displayed rooms when visibleRooms state changes
     useEffect(() => {
